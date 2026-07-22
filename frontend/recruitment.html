@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Recruitment Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/recruitment.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Karnesh Technology</h2>
+
+        </div>
+
+        <ul>
+
+            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+
+            <li><a href="employee.html"><i class="fa fa-users"></i> Employees</a></li>
+
+            <li><a href="attendance.html"><i class="fa fa-calendar-check"></i> Attendance</a></li>
+
+            <li><a href="leave.html"><i class="fa fa-plane"></i> Leave</a></li>
+
+            <li><a href="payroll.html"><i class="fa fa-money-bill-wave"></i> Payroll</a></li>
+
+            <li class="active">
+
+                <a href="recruitment.html">
+
+                    <i class="fa fa-user-plus"></i>
+
+                    Recruitment
+
+                </a>
+
+            </li>
+
+            <li><a href="reports.html"><i class="fa fa-chart-line"></i> Reports</a></li>
+
+            <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= Main ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Recruitment Management</h1>
+
+            <button onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <!-- Summary -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h2 id="jobCount">0</h2>
+
+                <p>Open Jobs</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="candidateCount">0</h2>
+
+                <p>Total Candidates</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="interviewCount">0</h2>
+
+                <p>Scheduled Interviews</p>
+
+            </div>
+
+        </section>
+
+        <!-- Toolbar -->
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="searchJob"
+                placeholder="Search Job">
+
+            <button onclick="searchJob()">
+
+                <i class="fa fa-search"></i>
+
+                Search
+
+            </button>
+
+            <button
+                class="add-btn"
+                onclick="openJobModal()">
+
+                <i class="fa fa-plus"></i>
+
+                New Job
+
+            </button>
+
+        </div>
+
+        <!-- Jobs -->
+
+        <section class="table-container">
+
+            <h2>Job Openings</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Job Title</th>
+
+                    <th>Department</th>
+
+                    <th>Vacancies</th>
+
+                    <th>Experience</th>
+
+                    <th>Status</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="jobTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Candidates -->
+
+        <section class="table-container">
+
+            <h2>Candidate List</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Job</th>
+
+                    <th>Email</th>
+
+                    <th>Phone</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="candidateTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ================= Job Modal ================= -->
+
+<div
+    class="modal"
+    id="jobModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Create Job</h2>
+
+            <span
+                class="close"
+                onclick="closeJobModal()">
+
+                &times;
+
+            </span>
+
+        </div>
+
+        <form id="jobForm">
+
+            <div class="form-group">
+
+                <label>Job Title</label>
+
+                <input
+                    type="text"
+                    id="job_title"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Department</label>
+
+                <select id="department">
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Vacancies</label>
+
+                <input
+                    type="number"
+                    id="vacancies">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Experience</label>
+
+                <input
+                    type="text"
+                    id="experience">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    id="location">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                    id="description">
+
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Open">
+
+                        Open
+
+                    </option>
+
+                    <option value="Closed">
+
+                        Closed
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="submit-btn"
+                type="submit">
+
+                Save Job
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+
+<script src="js/recruitment.js"></script>
+
+</body>
+</html>

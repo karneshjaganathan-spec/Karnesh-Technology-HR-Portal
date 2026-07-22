@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Reports</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/reports.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>HR Portal</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="employee.html">
+                    <i class="fa-solid fa-users"></i>
+                    Employees
+                </a>
+            </li>
+
+            <li>
+                <a href="attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="leave.html">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    Leave
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="reports.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Reports Dashboard</h1>
+
+            <button onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <!-- Summary Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h2 id="employeesCount">0</h2>
+
+                <p>Total Employees</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="departmentsCount">0</h2>
+
+                <p>Departments</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="attendanceCount">0</h2>
+
+                <p>Today's Attendance</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="pendingLeaveCount">0</h2>
+
+                <p>Pending Leaves</p>
+
+            </div>
+
+        </section>
+
+        <!-- Export Buttons -->
+
+        <div class="report-toolbar">
+
+            <button onclick="exportPDF()">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Export PDF
+
+            </button>
+
+            <button onclick="exportExcel()">
+
+                <i class="fa-solid fa-file-excel"></i>
+
+                Export Excel
+
+            </button>
+
+        </div>
+
+        <!-- Charts -->
+
+        <div class="chart-grid">
+
+            <div class="chart-card">
+
+                <h3>Department Report</h3>
+
+                <canvas id="departmentChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>Leave Status</h3>
+
+                <canvas id="leaveChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <!-- Department Report -->
+
+        <section class="table-section">
+
+            <h2>Department Report</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Department</th>
+                        <th>Employees</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="departmentReport">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Attendance Report -->
+
+        <section class="table-section">
+
+            <h2>Attendance Report</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Total Attendance</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="attendanceReport">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Leave Report -->
+
+        <section class="table-section">
+
+            <h2>Leave Report</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Status</th>
+                        <th>Total</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="leaveReport">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Salary Report -->
+
+        <section class="table-section">
+
+            <h2>Salary Report</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Employee</th>
+                        <th>Designation</th>
+                        <th>Salary</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="salaryReport">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/reports.js"></script>
+
+</body>
+</html>

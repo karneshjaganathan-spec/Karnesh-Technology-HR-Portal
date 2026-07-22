@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Leave Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/leave.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>HR Portal</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="employee.html">
+                    <i class="fa-solid fa-users"></i>
+                    Employees
+                </a>
+            </li>
+
+            <li>
+                <a href="attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="leave.html">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    Leave
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Leave Management</h1>
+
+            <button onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <!-- Toolbar -->
+
+        <div class="toolbar">
+
+            <select id="statusFilter">
+
+                <option value="">All Status</option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Approved">
+                    Approved
+                </option>
+
+                <option value="Rejected">
+                    Rejected
+                </option>
+
+            </select>
+
+            <button onclick="searchLeave()">
+
+                <i class="fa fa-search"></i>
+
+                Search
+
+            </button>
+
+            <button
+                class="add-btn"
+                onclick="openLeaveModal()">
+
+                <i class="fa fa-plus"></i>
+
+                Apply Leave
+
+            </button>
+
+        </div>
+
+        <!-- Leave Table -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Employee</th>
+                    <th>Leave Type</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="leaveTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- ====================================
+Leave Modal
+==================================== -->
+
+<div
+    class="modal"
+    id="leaveModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Apply Leave</h2>
+
+            <span
+                class="close"
+                onclick="closeLeaveModal()">
+
+                &times;
+
+            </span>
+
+        </div>
+
+        <form id="leaveForm">
+
+            <div class="form-group">
+
+                <label>Employee</label>
+
+                <select id="employee_id">
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Leave Type</label>
+
+                <select id="leave_type">
+
+                    <option>Casual Leave</option>
+                    <option>Sick Leave</option>
+                    <option>Earned Leave</option>
+                    <option>Emergency Leave</option>
+                    <option>Maternity Leave</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Start Date</label>
+
+                <input
+                    type="date"
+                    id="start_date"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>End Date</label>
+
+                <input
+                    type="date"
+                    id="end_date"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Reason</label>
+
+                <textarea
+                    id="reason"
+                    rows="4"
+                    required>
+
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Pending">
+
+                        Pending
+
+                    </option>
+
+                    <option value="Approved">
+
+                        Approved
+
+                    </option>
+
+                    <option value="Rejected">
+
+                        Rejected
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="submit-btn"
+                type="submit">
+
+                Submit Leave Request
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/leave.js"></script>
+
+</body>
+</html>

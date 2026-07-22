@@ -1,0 +1,318 @@
+/* ==========================================
+   Global
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#1d4e89,#4da8ff);
+
+}
+
+/* ==========================================
+   Login Container
+========================================== */
+
+.login-container{
+
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+
+}
+
+/* ==========================================
+   Login Card
+========================================== */
+
+.login-card{
+
+    width:420px;
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:45px 40px;
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+
+}
+
+/* ==========================================
+   Logo
+========================================== */
+
+.logo{
+
+    width:90px;
+    height:90px;
+
+    margin:0 auto 25px;
+
+    background:#1d4e89;
+
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:20px;
+
+    font-size:42px;
+
+}
+
+/* ==========================================
+   Titles
+========================================== */
+
+.login-card h1{
+
+    font-size:42px;
+
+    color:#123f82;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    margin-bottom:10px;
+
+}
+
+.login-card h2{
+
+    font-size:24px;
+
+    color:#333;
+
+    margin-bottom:18px;
+
+    font-weight:600;
+
+}
+
+.login-card p{
+
+    color:#777;
+
+    font-size:18px;
+
+    margin-bottom:35px;
+
+}
+
+/* ==========================================
+   Form
+========================================== */
+
+#loginForm{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ==========================================
+   Input Group
+========================================== */
+
+.input-group{
+
+    text-align:left;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#444;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:14px 15px;
+
+    border:1px solid #d8d8d8;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus{
+
+    border-color:#1d4e89;
+
+    box-shadow:0 0 0 4px rgba(29,78,137,.15);
+
+}
+
+/* ==========================================
+   Password Box
+========================================== */
+
+.password-box{
+
+    position:relative;
+
+}
+
+.password-box input{
+
+    padding-right:45px;
+
+}
+
+.password-box i{
+
+    position:absolute;
+
+    right:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#777;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.password-box i:hover{
+
+    color:#1d4e89;
+
+}
+
+/* ==========================================
+   Button
+========================================== */
+
+.login-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#1d4e89;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    background:#123f82;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(29,78,137,.25);
+
+}
+
+.login-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================
+   Message
+========================================== */
+
+#message{
+
+    margin-top:18px;
+
+    color:#dc3545;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:500px){
+
+    .login-card{
+
+        width:100%;
+
+        padding:35px 25px;
+
+    }
+
+    .login-card h1{
+
+        font-size:34px;
+
+    }
+
+    .login-card h2{
+
+        font-size:22px;
+
+    }
+
+    .login-card p{
+
+        font-size:16px;
+
+    }
+
+}

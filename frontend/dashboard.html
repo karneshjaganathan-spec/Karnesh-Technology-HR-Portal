@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Karnesh Technology HR Portal</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+<body>
+
+<div class="container">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>HR Portal</h2>
+
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="employee.html">
+                    <i class="fa-solid fa-users"></i>
+                    Employees
+                </a>
+            </li>
+
+            <li>
+                <a href="attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="leave.html">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    Leave
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= Main Content ================= -->
+
+    <main class="main">
+
+        <!-- Top Bar -->
+
+        <header class="topbar">
+
+            <h1>Karnesh Technology HR Portal</h1>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </header>
+
+        <!-- Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h2 id="totalEmployees">0</h2>
+
+                <p>Total Employees</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <h2 id="activeEmployees">0</h2>
+
+                <p>Active Employees</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-building"></i>
+
+                <h2 id="departments">0</h2>
+
+                <p>Departments</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <h2 id="attendanceToday">0</h2>
+
+                <p>Today's Attendance</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-file-circle-question"></i>
+
+                <h2 id="pendingLeaves">0</h2>
+
+                <p>Pending Leaves</p>
+
+            </div>
+
+        </section>
+        <!-- ==========================================
+Dashboard Analytics
+========================================== -->
+
+        <div class="chart-container">
+
+            <div class="chart-card">
+
+                <h3>Employee Department Distribution</h3>
+
+                <canvas id="departmentChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>Monthly Attendance</h3>
+
+                <canvas id="attendanceChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <div class="chart-container">
+
+            <div class="chart-card">
+
+                <h3>Leave Status</h3>
+
+                <canvas id="leaveChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>Payroll Overview</h3>
+
+                <canvas id="payrollChart"></canvas>
+
+            </div>
+
+        </div>
+        <!-- Recent Employees -->
+
+        <section class="table-section">
+
+            <h2>Recent Employees</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Joining</th>
+                    <th>Status</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="recentEmployees">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Department Summary -->
+
+        <section class="table-section">
+
+            <h2>Department Summary</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Department</th>
+                    <th>Employees</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="departmentSummary">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

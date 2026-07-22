@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/attendance.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>HR Portal</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="employee.html">
+                    <i class="fa-solid fa-users"></i>
+                    Employees
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="leave.html">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    Leave
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Attendance Management</h1>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </header>
+
+        <!-- Toolbar -->
+
+        <div class="toolbar">
+
+            <input
+                type="date"
+                id="attendanceDate">
+
+            <button onclick="searchAttendance()">
+
+                <i class="fa fa-search"></i>
+
+                Search
+
+            </button>
+
+            <button
+                class="add-btn"
+                onclick="openAttendanceModal()">
+
+                <i class="fa fa-plus"></i>
+
+                Mark Attendance
+
+            </button>
+
+        </div>
+
+        <!-- Attendance Table -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Employee Code</th>
+                        <th>Employee</th>
+                        <th>Date</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="attendanceTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ==========================
+Attendance Modal
+=========================== -->
+
+<div
+    id="attendanceModal"
+    class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Mark Attendance</h2>
+
+            <span
+                class="close"
+                onclick="closeAttendanceModal()">
+
+                &times;
+
+            </span>
+
+        </div>
+
+        <form id="attendanceForm">
+
+            <div class="form-group">
+
+                <label>Employee</label>
+
+                <select id="employee_id">
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Date</label>
+
+                <input
+                    type="date"
+                    id="attendance_date"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Check In</label>
+
+                <input
+                    type="time"
+                    id="check_in"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Check Out</label>
+
+                <input
+                    type="time"
+                    id="check_out"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Leave">Leave</option>
+                    <option value="Half Day">Half Day</option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="submit-btn"
+                type="submit">
+
+                Save Attendance
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/attendance.js"></script>
+
+</body>
+</html>

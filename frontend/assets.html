@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Asset Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/assets.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Karnesh Technology</h2>
+
+        </div>
+
+        <ul>
+
+            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+
+            <li><a href="employee.html"><i class="fa fa-users"></i> Employees</a></li>
+
+            <li><a href="attendance.html"><i class="fa fa-calendar-check"></i> Attendance</a></li>
+
+            <li><a href="leave.html"><i class="fa fa-plane"></i> Leave</a></li>
+
+            <li><a href="payroll.html"><i class="fa fa-money-bill-wave"></i> Payroll</a></li>
+
+            <li><a href="recruitment.html"><i class="fa fa-user-plus"></i> Recruitment</a></li>
+
+            <li><a href="performance.html"><i class="fa fa-chart-line"></i> Performance</a></li>
+
+            <li><a href="notifications.html"><i class="fa fa-bell"></i> Notifications</a></li>
+
+            <li><a href="documents.html"><i class="fa fa-folder-open"></i> Documents</a></li>
+
+            <li class="active">
+
+                <a href="assets.html">
+
+                    <i class="fa fa-laptop"></i>
+
+                    Assets
+
+                </a>
+
+            </li>
+
+            <li><a href="reports.html"><i class="fa fa-chart-bar"></i> Reports</a></li>
+
+            <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Asset Management</h1>
+
+            <button onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <!-- Dashboard Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h2 id="totalAssets">0</h2>
+
+                <p>Total Assets</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="availableAssets">0</h2>
+
+                <p>Available</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="assignedAssets">0</h2>
+
+                <p>Assigned</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="maintenanceAssets">0</h2>
+
+                <p>Maintenance</p>
+
+            </div>
+
+        </section>
+
+        <!-- Toolbar -->
+
+        <div class="toolbar">
+
+            <input
+
+                type="text"
+
+                id="searchAsset"
+
+                placeholder="Search Asset">
+
+            <select id="statusFilter">
+
+                <option value="">All Status</option>
+
+                <option value="Available">Available</option>
+
+                <option value="Assigned">Assigned</option>
+
+                <option value="Maintenance">Maintenance</option>
+
+                <option value="Retired">Retired</option>
+
+            </select>
+
+            <button onclick="filterAssets()">
+
+                <i class="fa fa-search"></i>
+
+                Search
+
+            </button>
+
+            <button
+
+                class="add-btn"
+
+                onclick="openAssetModal()">
+
+                <i class="fa fa-plus"></i>
+
+                Add Asset
+
+            </button>
+
+        </div>
+
+        <!-- Asset Table -->
+
+        <section class="table-container">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Code</th>
+
+                    <th>Name</th>
+
+                    <th>Category</th>
+
+                    <th>Brand</th>
+
+                    <th>Assigned To</th>
+
+                    <th>Status</th>
+
+                    <th>Warranty</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="assetTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ================= Add Asset Modal ================= -->
+
+<div class="modal" id="assetModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Add Asset</h2>
+
+            <span class="close"
+
+                  onclick="closeAssetModal()">
+
+                &times;
+
+            </span>
+
+        </div>
+
+        <form id="assetForm">
+
+            <div class="form-group">
+
+                <label>Asset Code</label>
+
+                <input type="text"
+                       id="asset_code"
+                       required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Asset Name</label>
+
+                <input type="text"
+                       id="asset_name"
+                       required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Category</label>
+
+                <select id="category">
+
+                    <option>Laptop</option>
+                    <option>Desktop</option>
+                    <option>Monitor</option>
+                    <option>Keyboard</option>
+                    <option>Mouse</option>
+                    <option>Printer</option>
+                    <option>Mobile</option>
+                    <option>ID Card</option>
+                    <option>Chair</option>
+                    <option>Table</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Brand</label>
+
+                <input type="text"
+                       id="brand">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Model</label>
+
+                <input type="text"
+                       id="model">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Serial Number</label>
+
+                <input type="text"
+                       id="serial_number">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Purchase Date</label>
+
+                <input type="date"
+                       id="purchase_date">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Purchase Cost</label>
+
+                <input type="number"
+                       id="purchase_cost">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Warranty Expiry</label>
+
+                <input type="date"
+                       id="warranty_expiry">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option>Available</option>
+                    <option>Assigned</option>
+                    <option>Maintenance</option>
+                    <option>Retired</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Assign Employee</label>
+
+                <select id="employee_id">
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Assigned Date</label>
+
+                <input type="date"
+                       id="assigned_date">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Remarks</label>
+
+                <textarea id="remarks"></textarea>
+
+            </div>
+
+            <button
+
+                class="submit-btn"
+
+                type="submit">
+
+                Save Asset
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/assets.js"></script>
+
+</body>
+
+</html>

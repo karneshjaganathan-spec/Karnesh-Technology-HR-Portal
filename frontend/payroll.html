@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Payroll Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/payroll.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Karnesh Technology</h2>
+
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="employee.html">
+                    <i class="fa fa-users"></i>
+                    Employees
+                </a>
+            </li>
+
+            <li>
+                <a href="attendance.html">
+                    <i class="fa fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="leave.html">
+                    <i class="fa fa-plane"></i>
+                    Leave
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="fa fa-chart-line"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="payroll.html">
+                    <i class="fa fa-money-bill-wave"></i>
+                    Payroll
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= Main ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Payroll Management</h1>
+
+            <button onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <!-- Summary Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h2 id="totalPayroll">0</h2>
+
+                <p>Total Payroll</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="averageSalary">₹0</h2>
+
+                <p>Average Salary</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="employeeCount">0</h2>
+
+                <p>Employees Paid</p>
+
+            </div>
+
+        </section>
+
+        <!-- Toolbar -->
+
+        <div class="toolbar">
+
+            <input
+                type="month"
+                id="payMonth">
+
+            <button onclick="filterPayroll()">
+
+                <i class="fa fa-search"></i>
+
+                Filter
+
+            </button>
+
+            <button
+                class="add-btn"
+                onclick="openPayrollModal()">
+
+                <i class="fa fa-plus"></i>
+
+                Generate Payroll
+
+            </button>
+
+            <button onclick="exportPDF()">
+
+                PDF
+
+            </button>
+
+            <button onclick="exportExcel()">
+
+                Excel
+
+            </button>
+
+        </div>
+
+        <!-- Payroll Table -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Employee</th>
+                    <th>Designation</th>
+                    <th>Basic</th>
+                    <th>Allowance</th>
+                    <th>Deduction</th>
+                    <th>Net Salary</th>
+                    <th>Month</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="payrollTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- =========================================
+Generate Payroll Modal
+========================================= -->
+
+<div
+    class="modal"
+    id="payrollModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+
+                Generate Payroll
+
+            </h2>
+
+            <span
+                class="close"
+                onclick="closePayrollModal()">
+
+                &times;
+
+            </span>
+
+        </div>
+
+        <form id="payrollForm">
+
+            <div class="form-group">
+
+                <label>Employee</label>
+
+                <select id="employee_id">
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Basic Salary</label>
+
+                <input
+                    type="number"
+                    id="basic_salary"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Allowances</label>
+
+                <input
+                    type="number"
+                    id="allowances"
+                    value="0">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Deductions</label>
+
+                <input
+                    type="number"
+                    id="deductions"
+                    value="0">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Pay Month</label>
+
+                <input
+                    type="month"
+                    id="pay_month">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Payment Date</label>
+
+                <input
+                    type="date"
+                    id="payment_date">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Paid">
+                        Paid
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="submit-btn"
+                type="submit">
+
+                Save Payroll
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/payroll.js"></script>
+
+</body>
+</html>

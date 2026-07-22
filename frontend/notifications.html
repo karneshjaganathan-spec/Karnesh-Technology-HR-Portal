@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/notifications.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Karnesh Technology</h2>
+
+        </div>
+
+        <ul>
+
+            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li><a href="employee.html"><i class="fa fa-users"></i> Employees</a></li>
+            <li><a href="attendance.html"><i class="fa fa-calendar-check"></i> Attendance</a></li>
+            <li><a href="leave.html"><i class="fa fa-plane"></i> Leave</a></li>
+            <li><a href="payroll.html"><i class="fa fa-money-bill-wave"></i> Payroll</a></li>
+            <li><a href="recruitment.html"><i class="fa fa-user-plus"></i> Recruitment</a></li>
+            <li><a href="performance.html"><i class="fa fa-chart-line"></i> Performance</a></li>
+
+            <li class="active">
+                <a href="notifications.html">
+                    <i class="fa fa-bell"></i>
+                    Notifications
+                </a>
+            </li>
+
+            <li><a href="reports.html"><i class="fa fa-chart-bar"></i> Reports</a></li>
+            <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= Main ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Notifications</h1>
+
+            <button onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <!-- Summary Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h2 id="totalNotifications">0</h2>
+
+                <p>Total Notifications</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="unreadNotifications">0</h2>
+
+                <p>Unread</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="todayNotifications">0</h2>
+
+                <p>Today's Notifications</p>
+
+            </div>
+
+        </section>
+
+        <!-- Toolbar -->
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="searchNotification"
+                placeholder="Search Notification">
+
+            <button onclick="searchNotification()">
+
+                <i class="fa fa-search"></i>
+
+                Search
+
+            </button>
+
+            <button
+                class="add-btn"
+                onclick="openNotificationModal()">
+
+                <i class="fa fa-plus"></i>
+
+                New Notification
+
+            </button>
+
+        </div>
+
+        <!-- Notification Table -->
+
+        <section class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Title</th>
+
+                        <th>Type</th>
+
+                        <th>Recipient</th>
+
+                        <th>Status</th>
+
+                        <th>Created</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="notificationTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ================= Modal ================= -->
+
+<div
+    class="modal"
+    id="notificationModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Create Notification</h2>
+
+            <span
+                class="close"
+                onclick="closeNotificationModal()">
+
+                &times;
+
+            </span>
+
+        </div>
+
+        <form id="notificationForm">
+
+            <div class="form-group">
+
+                <label>Title</label>
+
+                <input
+                    type="text"
+                    id="title"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Message</label>
+
+                <textarea
+                    id="message"
+                    rows="5"
+                    required>
+
+                </textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Notification Type</label>
+
+                <select id="notification_type">
+
+                    <option value="Announcement">Announcement</option>
+                    <option value="Leave">Leave</option>
+                    <option value="Payroll">Payroll</option>
+                    <option value="Performance">Performance</option>
+                    <option value="General">General</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Recipient</label>
+
+                <select id="recipient_type">
+
+                    <option value="All">All Employees</option>
+                    <option value="HR">HR Department</option>
+                    <option value="Employee">Specific Employee</option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="submit-btn">
+
+                Save Notification
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+
+<script src="js/notifications.js"></script>
+
+</body>
+
+</html>

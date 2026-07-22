@@ -1,0 +1,338 @@
+/* ===========================================
+   Leave Management
+=========================================== */
+
+.toolbar{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.toolbar select{
+
+    min-width:220px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    outline:none;
+    font-size:15px;
+
+}
+
+.toolbar button{
+
+    padding:12px 20px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+    transition:.3s;
+
+}
+
+.toolbar button:first-of-type{
+
+    background:#17a2b8;
+
+}
+
+.add-btn{
+
+    background:#28a745;
+
+}
+
+.toolbar button:hover{
+
+    opacity:.9;
+
+}
+
+
+/* =====================================
+   Table
+===================================== */
+
+.table-container{
+
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#1f3c88;
+    color:white;
+
+}
+
+th{
+
+    padding:15px;
+    text-align:left;
+
+}
+
+td{
+
+    padding:15px;
+    border-bottom:1px solid #ececec;
+
+}
+
+tbody tr:hover{
+
+    background:#f4f8ff;
+
+}
+
+
+/* =====================================
+   Status Badges
+===================================== */
+
+.badge{
+
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+
+}
+
+.pending{
+
+    background:#ffc107;
+    color:black;
+
+}
+
+.approved{
+
+    background:#28a745;
+
+}
+
+.rejected{
+
+    background:#dc3545;
+
+}
+
+
+/* =====================================
+   Action Buttons
+===================================== */
+
+.action-btn{
+
+    border:none;
+    color:white;
+    cursor:pointer;
+    padding:8px 12px;
+    border-radius:5px;
+    margin-right:5px;
+    transition:.3s;
+
+}
+
+.edit-btn{
+
+    background:#007bff;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+}
+
+.approve-btn{
+
+    background:#28a745;
+
+}
+
+.reject-btn{
+
+    background:#ffc107;
+    color:black;
+
+}
+
+.action-btn:hover{
+
+    opacity:.9;
+
+}
+
+
+/* =====================================
+   Modal
+===================================== */
+
+.modal{
+
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.55);
+    z-index:999;
+
+}
+
+.modal-content{
+
+    background:white;
+    width:520px;
+    max-width:95%;
+    margin:50px auto;
+    border-radius:10px;
+    overflow:hidden;
+    animation:popup .3s;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.modal-header{
+
+    background:#1f3c88;
+    color:white;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+.close{
+
+    font-size:28px;
+    cursor:pointer;
+
+}
+
+#leaveForm{
+
+    padding:25px;
+
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+    font-weight:bold;
+
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:15px;
+
+}
+
+.form-group textarea{
+
+    resize:vertical;
+
+}
+
+.submit-btn{
+
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#1f3c88;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+
+}
+
+.submit-btn:hover{
+
+    background:#17306d;
+
+}
+
+
+/* =====================================
+   Responsive
+===================================== */
+
+@media(max-width:768px){
+
+.toolbar{
+
+    flex-direction:column;
+    align-items:stretch;
+
+}
+
+.toolbar select,
+.toolbar button{
+
+    width:100%;
+
+}
+
+table{
+
+    font-size:13px;
+
+}
+
+.modal-content{
+
+    width:95%;
+
+}
+
+}

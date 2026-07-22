@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Performance Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/performance.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= Sidebar ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Karnesh Technology</h2>
+
+        </div>
+
+        <ul>
+
+            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+
+            <li><a href="employee.html"><i class="fa fa-users"></i> Employees</a></li>
+
+            <li><a href="attendance.html"><i class="fa fa-calendar-check"></i> Attendance</a></li>
+
+            <li><a href="leave.html"><i class="fa fa-plane"></i> Leave</a></li>
+
+            <li><a href="payroll.html"><i class="fa fa-money-bill-wave"></i> Payroll</a></li>
+
+            <li><a href="recruitment.html"><i class="fa fa-user-plus"></i> Recruitment</a></li>
+
+            <li class="active">
+
+                <a href="performance.html">
+
+                    <i class="fa fa-chart-line"></i>
+
+                    Performance
+
+                </a>
+
+            </li>
+
+            <li><a href="reports.html"><i class="fa fa-chart-bar"></i> Reports</a></li>
+
+            <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= Main ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Performance Management</h1>
+
+            <button onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+        <!-- Summary Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h2 id="reviewCount">0</h2>
+
+                <p>Total Reviews</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="avgRating">0</h2>
+
+                <p>Average Rating</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="promotionCount">0</h2>
+
+                <p>Recommended Promotions</p>
+
+            </div>
+
+        </section>
+
+        <!-- Toolbar -->
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="searchEmployee"
+                placeholder="Search Employee">
+
+            <button onclick="searchReview()">
+
+                <i class="fa fa-search"></i>
+
+                Search
+
+            </button>
+
+            <button
+                class="add-btn"
+                onclick="openReviewModal()">
+
+                <i class="fa fa-plus"></i>
+
+                Add Review
+
+            </button>
+
+        </div>
+
+        <!-- Performance Table -->
+
+        <section class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Employee</th>
+
+                        <th>Designation</th>
+
+                        <th>Review Period</th>
+
+                        <th>Reviewer</th>
+
+                        <th>Overall Rating</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="reviewTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ==========================================
+Review Modal
+========================================== -->
+
+<div
+    class="modal"
+    id="reviewModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+
+                Employee Performance Review
+
+            </h2>
+
+            <span
+                class="close"
+                onclick="closeReviewModal()">
+
+                &times;
+
+            </span>
+
+        </div>
+
+        <form id="reviewForm">
+
+            <div class="form-group">
+
+                <label>Employee</label>
+
+                <select id="employee_id"></select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Review Period</label>
+
+                <input
+                    type="text"
+                    id="review_period"
+                    placeholder="Q1 2026">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Reviewer</label>
+
+                <input
+                    type="text"
+                    id="reviewer_name">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>KPI Score</label>
+
+                <input
+                    type="number"
+                    id="kpi_score"
+                    min="0"
+                    max="10">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Attendance Score</label>
+
+                <input
+                    type="number"
+                    id="attendance_score"
+                    min="0"
+                    max="10">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Teamwork Score</label>
+
+                <input
+                    type="number"
+                    id="teamwork_score"
+                    min="0"
+                    max="10">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Communication Score</label>
+
+                <input
+                    type="number"
+                    id="communication_score"
+                    min="0"
+                    max="10">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Strengths</label>
+
+                <textarea id="strengths"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Areas for Improvement</label>
+
+                <textarea id="improvements"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Manager Comments</label>
+
+                <textarea id="manager_comments"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Employee Comments</label>
+
+                <textarea id="employee_comments"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Promotion Recommended</label>
+
+                <select id="promotion_recommended">
+
+                    <option value="Yes">Yes</option>
+
+                    <option value="No">No</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Review Date</label>
+
+                <input
+                    type="date"
+                    id="review_date">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Completed">Completed</option>
+
+                    <option value="Pending">Pending</option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="submit-btn">
+
+                Save Review
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+
+<script src="js/performance.js"></script>
+
+</body>
+</html>
